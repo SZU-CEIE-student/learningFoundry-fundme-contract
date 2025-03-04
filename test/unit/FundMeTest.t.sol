@@ -111,10 +111,7 @@ contract FundMeTest is Test {
         vm.stopPrank();
 
         //Assert
-        assertEq(
-            fundMe.getOwner().balance,
-            startingOwnerBalance + startingFundMeBalance
-        );
+        assertEq(fundMe.getOwner().balance, startingOwnerBalance + startingFundMeBalance);
         assertEq(address(fundMe).balance, 0);
     }
 
@@ -136,10 +133,7 @@ contract FundMeTest is Test {
         vm.stopPrank();
 
         //Assert
-        assertEq(
-            fundMe.getOwner().balance,
-            startingOwnerBalance + startingFundMeBalance
-        );
+        assertEq(fundMe.getOwner().balance, startingOwnerBalance + startingFundMeBalance);
         assertEq(address(fundMe).balance, 0);
     }
 }

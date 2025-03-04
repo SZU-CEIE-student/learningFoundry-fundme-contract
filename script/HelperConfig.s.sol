@@ -14,6 +14,7 @@ contract HelperConfig is Script {
 
     uint8 public constant DECIMALS = 8;
     int256 public constant INITIAL_PRICE = 2000e8;
+
     struct NetworkConfig {
         address priceFeed;
     }
@@ -31,9 +32,7 @@ contract HelperConfig is Script {
 
     function getSepoliaEthConfig() public pure returns (NetworkConfig memory) {
         //Chainlink feed address
-        NetworkConfig memory sepoliaEthConfig = NetworkConfig({
-            priceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306
-        });
+        NetworkConfig memory sepoliaEthConfig = NetworkConfig({priceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306});
         return sepoliaEthConfig;
     }
 
@@ -45,23 +44,16 @@ contract HelperConfig is Script {
         //1.Deploy mocks when we are on a local anvial chain
         //2.return the mock address
         vm.startBroadcast();
-        MockV3Aggregator mockPriceFeed = new MockV3Aggregator(
-            DECIMALS,
-            INITIAL_PRICE
-        );
+        MockV3Aggregator mockPriceFeed = new MockV3Aggregator(DECIMALS, INITIAL_PRICE);
         vm.stopBroadcast();
 
-        NetworkConfig memory AnvilEthConfig = NetworkConfig({
-            priceFeed: address(mockPriceFeed)
-        });
+        NetworkConfig memory AnvilEthConfig = NetworkConfig({priceFeed: address(mockPriceFeed)});
         return AnvilEthConfig;
     }
 
     function getMainnetEthConfig() public pure returns (NetworkConfig memory) {
         //mainnet price feed address
-        NetworkConfig memory MainnetEthConfig = NetworkConfig({
-            priceFeed: 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419
-        });
+        NetworkConfig memory MainnetEthConfig = NetworkConfig({priceFeed: 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419});
         return MainnetEthConfig;
     }
 }
